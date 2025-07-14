@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Teamzia | Themesdesign</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Premium Bootstrap 5 Landing Page Template" />
+    <meta name="keywords" content="bootstrap 5, premium, marketing, multipurpose" />
+    <meta content="Author" name="Themesdesign" />
+
+    <!-- bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Material Design Icons (CDN kullanıldı, local kaldırıldı) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.9.55/css/materialdesignicons.min.css" integrity="sha512-vIgFb4o1CL8iMGoIF7cYiEVFrel13k/BkTGvs0hGfVnlbV6XjAA0M0oEHdWqGdAVRTDID3vIZPOHmKdrMAUChA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- custom css -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+
+    <!-- Google Fonts: Lato başlık fontu -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Google Fonts: Montserrat başlık fontu -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+
+    <!-- Sayfa içi animasyon CSS'i (isteğe bağlı style.css'e taşı) -->
+    <style>
+        /* .team-social ve hover paneli kaldırıldı */
+        .team-social { display: none !important; }
+        .team-img {
+            position: relative;
+            overflow: hidden;
+        }
+        .team-img img {
+            transition: transform 0.45s cubic-bezier(.4,2,.6,1);
+        }
+        .team-img:hover img {
+            transform: scale(1.10);
+        }
+        .custom-width {
+            max-width: 350px;
+            width: 100%;
+        }
+
+        .team-box {
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 2px 16px rgba(220,53,69,0.07);
+            transition: box-shadow 0.3s, border 0.3s;
+        }
+
+        .team-box:hover {
+            box-shadow: 0 4px 32px rgba(220,53,69,0.15);
+            border: 2px solid #dc3545;
+        }
+
+        /* Modal animasyonu ve görünürlük */
+        .custom-fade .modal-dialog {
+            transform: translateY(40px) scale(0.95);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(.4,2,.6,1);
+        }
+        .custom-fade.show .modal-dialog {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+        .modal-content {
+            border-radius: 0.4rem;
+            border: none;
+            background: #fff;
+            box-shadow: 0 8px 32px rgba(220,53,69,0.15);
+            position: relative;
+            animation: modalFadeInUp 0.6s cubic-bezier(.4,2,.6,1);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            overflow: visible;
+        }
+        .modal-dialog.modal-lg {
+            max-width: 620px;
+        }
+        .modal-title {
+            width: 100%;
+            justify-content: center;
+            font-family: 'Lato', Arial, Helvetica, sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 0.2em;
+            white-space: nowrap;
+            padding: 1.1rem 0.5rem 1.1rem 0.5rem;
+        }
+        .modal-header {
+            border-bottom: none;
+            background: #f8f9fa;
+            border-radius: 0.4rem 0.4rem 0 0;
+            padding-bottom: 0;
+        }
+        .modal-body {
+            padding: 1.3rem 1.1rem 1.1rem 1.1rem;
+        }
+        .modal-photo {
+            text-align: center;
+        }
+        .modal-photo img {
+            border-radius: 0.4rem;
+            border: 3px solid #dc3545;
+            box-shadow: 0 2px 12px rgba(220,53,69,0.07);
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+            background: #f5f5f5;
+        }
+        .modal-info-section {
+            margin-bottom: 0.7rem;
+        }
+        .modal-info-title {
+            font-size: 1.08rem;
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 0.3rem;
+            border-bottom: 1.5px solid #ececec;
+            padding-bottom: 0.2rem;
+            letter-spacing: 0.5px;
+        }
+        .modal-info-content {
+            font-size: 1.08rem;
+            color: #444;
+        }
+        .modal-bio {
+            background: #f8f9fa;
+            border-radius: 0.4rem;
+            padding: 0.7rem 0.8rem;
+            margin-top: 0.7rem;
+            font-size: 1.08rem;
+            color: #444;
+            box-shadow: 0 1px 6px rgba(220,53,69,0.04);
+        }
+        @media (max-width: 991.98px) {
+            .modal-body { padding: 0.7rem 0.2rem 0.7rem 0.2rem; }
+            .modal-content { border-radius: 0.4rem; max-width: 98vw; }
+            .modal-dialog.modal-lg { max-width: 98vw; }
+        }
+        @media (max-width: 575.98px) {
+            .modal-content { border-radius: 0.2rem; }
+            .modal-bio { font-size: 0.98rem; padding: 0.7rem 0.6rem; }
+        }
+        .team-animate-border {
+            position: relative;
+            overflow: visible;
+        }
+        .team-animate-border::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 0;
+            width: 0%; height: 4px;
+            background: #dc3545;
+            border-radius: 2px;
+            transition: width 0.5s cubic-bezier(.4,2,.6,1);
+            z-index: 2;
+        }
+        .team-animate-border::after {
+            content: "";
+            position: absolute;
+            left: 0; bottom: 0;
+            width: 0%; height: 4px;
+            background: #dc3545;
+            border-radius: 2px;
+            transition: width 0.5s cubic-bezier(.4,2,.6,1) 0.1s;
+            z-index: 2;
+        }
+        .team-animate-border.visible::before,
+        .team-animate-border.visible::after {
+            width: 100%;
+        }
+        .page-border {
+            position: fixed;
+            background: #dc3545;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 1;
+        }
+        .page-border-top, .page-border-bottom {
+            left: 0; right: 0;
+            height: 4px;
+            width: 0%;
+            transition: width 0.7s cubic-bezier(.4,2,.6,1);
+        }
+        .page-border-top {
+            top: 0;
+        }
+        .page-border-bottom {
+            bottom: 0;
+        }
+        .page-border-left, .page-border-right {
+            top: 0; bottom: 0;
+            width: 4px;
+            height: 0%;
+            transition: height 0.7s cubic-bezier(.4,2,.6,1) 0.2s;
+        }
+        .page-border-left {
+            left: 0;
+        }
+        .page-border-right {
+            right: 0;
+        }
+        body.page-border-animate .page-border-top,
+        body.page-border-animate .page-border-bottom {
+            width: 100%;
+        }
+        body.page-border-animate .page-border-left,
+        body.page-border-animate .page-border-right {
+            height: 100%;
+        }
+        @media (max-width: 768px) {
+            .page-border-top, .page-border-bottom { height: 2px; }
+            .page-border-left, .page-border-right { width: 2px; }
+        }
+        .ctk-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .ctk-title-bg {
+            background: none !important;
+            border-radius: 0;
+            width: 100%;
+            min-width: 0;
+            max-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            overflow: visible;
+        }
+        .ctk-title {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 1.1rem 0.5rem 1.1rem 0.5rem;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: #222;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        @media (max-width: 991.98px) {
+            .ctk-title {
+                font-size: 1.5rem;
+            }
+        }
+        @media (max-width: 575.98px) {
+            .ctk-title {
+                font-size: 1.05rem;
+                padding: 0.7rem 0.2rem 0.7rem 0.2rem;
+            }
+        }
+        .ctk-underline {
+            width: 0;
+            height: 4px;
+            background: #dc3545;
+            border-radius: 2px;
+            margin: 0.5rem auto 0 auto;
+            animation: ctkUnderlineGrow 0.8s cubic-bezier(.4,2,.6,1) 0.8s forwards;
+        }
+        @keyframes ctkUnderlineGrow {
+            to { width: 120px; }
+        }
+        body {
+            background-color: #f5f5f5;
+        }
+        /* Modal fotoğraf ile bilgiler arasındaki animasyonlu çizgi */
+        .modal-divider {
+            width: 2.5px;
+            min-height: 120px;
+            background: linear-gradient(to bottom, #dc3545 60%, #ececec 100%);
+            border-radius: 2px;
+            margin: 0 1.2rem;
+            align-self: stretch;
+            opacity: 0;
+            transform: scaleY(0);
+            animation: dividerGrow 0.7s cubic-bezier(.4,2,.6,1) 0.2s forwards;
+        }
+        @keyframes dividerGrow {
+            to {
+                opacity: 1;
+                transform: scaleY(1);
+            }
+        }
+        @media (max-width: 991.98px) {
+            .modal-divider { display: none !important; }
+        }
+        /* Modal içeriği için özel flex düzeni */
+        .modal-flexcard {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            gap: 0;
+        }
+        .modal-photo-col {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 160px;
+            max-width: 200px;
+            flex: 0 0 200px;
+            background: #f7f7f7;
+            border-radius: 0.4rem 0 0 0.4rem;
+            border-right: 2px solid #ececec;
+            padding: 1.2rem 0.7rem;
+        }
+        .modal-photo-big img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 0.4rem;
+            border: 2.5px solid #dc3545;
+            box-shadow: 0 2px 12px rgba(220,53,69,0.07);
+            background: #f5f5f5;
+        }
+        .modal-info-col {
+            flex: 1 1 0%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 1.2rem 1.2rem 1.2rem 2.2rem;
+            min-width: 220px;
+            max-width: 300px;
+            border-right: 2px solid #ececec;
+        }
+        .modal-extra-col {
+            flex: 1 1 0%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 1.2rem 1.2rem 1.2rem 1.2rem;
+            min-width: 220px;
+            max-width: 300px;
+        }
+        .modal-main-info {
+            margin-bottom: 0.7rem;
+        }
+        .modal-name {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #222;
+            letter-spacing: 0.5px;
+        }
+        .modal-position {
+            font-size: 1.08rem;
+            color: #444;
+            font-weight: 500;
+        }
+        .modal-department {
+            font-size: 1.01rem;
+            color: #888;
+            font-weight: 400;
+        }
+        .modal-social-icons a {
+            display: inline-block;
+            margin-right: 0.5em;
+            font-size: 1.3em;
+            color: #dc3545;
+            transition: color 0.2s, transform 0.2s;
+        }
+        .modal-social-icons a:hover {
+            color: #222;
+            transform: scale(1.15) rotate(-6deg);
+        }
+        .modal-bio {
+            background: #f8f9fa;
+            border-radius: 0.4rem;
+            padding: 0.7rem 0.8rem;
+            margin-top: 0.7rem;
+            font-size: 1.08rem;
+            color: #444;
+            box-shadow: 0 1px 6px rgba(220,53,69,0.04);
+        }
+        @media (max-width: 991.98px) {
+            .modal-flexcard {
+                flex-direction: column;
+                align-items: center;
+            }
+            .modal-photo-col {
+                min-width: 0;
+                max-width: 100%;
+                flex: none;
+                border-radius: 0.4rem 0.4rem 0 0;
+                border-right: none;
+                border-bottom: 2px solid #ececec;
+                padding: 1.2rem 0.7rem 0.7rem 0.7rem;
+            }
+            .modal-info-col, .modal-extra-col {
+                padding: 1.2rem 0.7rem 0.7rem 0.7rem;
+                border-right: none;
+                max-width: 100%;
+            }
+        }
+        .modal-3col {
+            display: flex;
+            flex-direction: row;
+            gap: 0;
+        }
+        .modal-col {
+            flex: 1 1 0;
+            padding: 1.2rem 1rem;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            box-sizing: border-box;
+        }
+        .modal-photo-col {
+            max-width: 180px;
+            min-width: 140px;
+            padding: 0;
+            background: #f7f7f7;
+            border-radius: 0.4rem 0 0 0.4rem;
+            border-right: 2px solid #ececec;
+            align-items: stretch;
+            justify-content: stretch;
+            overflow: hidden;
+        }
+        .modal-photo-col img {
+            width: 100%;
+            height: 100%;
+            min-height: 220px;
+            object-fit: cover;
+            border-radius: 0.4rem 0 0 0.4rem;
+            border: none;
+            background: #f5f5f5;
+            display: block;
+        }
+        .modal-info-col, .modal-extra-col {
+            min-width: 0;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+        .modal-name { font-size: 1.18rem; font-weight: 700; color: #222; }
+        .modal-position { font-size: 1.08rem; color: #444; font-weight: 500; }
+        .modal-department { font-size: 1.01rem; color: #888; }
+        .modal-email { font-size: 1.01rem; color: #555; }
+        .modal-social a { margin-right: 0.5em; font-size: 1.3em; color: #dc3545; }
+        .modal-social a:hover { color: #222; }
+        .modal-achievements { font-size: 1.01rem; color: #444; }
+        .modal-skills { font-size: 1.01rem; color: #444; list-style: disc inside; margin: 0; padding: 0; }
+        .modal-education { font-size: 1.01rem; color: #444; }
+        .modal-bio { font-size: 1.01rem; color: #444; background: #f8f9fa; border-radius: 0.4rem; padding: 0.7rem 0.8rem; margin-top: 0.7rem; }
+        @media (max-width: 991.98px) {
+            .modal-3col { flex-direction: column; }
+            .modal-photo-col {
+                max-width: 100%;
+                min-width: 0;
+                border-radius: 0.4rem 0.4rem 0 0;
+                border-right: none;
+                border-bottom: 2px solid #ececec;
+                height: 180px;
+            }
+            .modal-photo-col img {
+                border-radius: 0.4rem 0.4rem 0 0;
+                min-height: 120px;
+                height: 100%;
+            }
+        }
+        @media (max-width: 575.98px) {
+            .modal-photo-col {
+                height: 120px;
+            }
+            .modal-photo-col img {
+                min-height: 80px;
+            }
+        }
+        /* Modal kenarlarında kırmızı animasyonlu çizgi */
+        .modal-content::before, .modal-content::after {
+            content: "";
+            position: absolute;
+            background: #dc3545;
+            border-radius: 3px;
+            transition: all 1.2s cubic-bezier(.4,2,.6,1);
+            z-index: 2;
+        }
+        .modal-content::before {
+            left: 0; top: 0;
+            width: 0%; height: 6px;
+            transition-delay: 0.1s;
+        }
+        .modal-content::after {
+            right: 0; bottom: 0;
+            width: 0%; height: 6px;
+            transition-delay: 0.3s;
+        }
+        .modal-content.animated-border::before,
+        .modal-content.animated-border::after {
+            width: 100%;
+        }
+        .modal-content .modal-border-side {
+            content: "";
+            position: absolute;
+            background: #dc3545;
+            border-radius: 3px;
+            transition: all 1.2s cubic-bezier(.4,2,.6,1);
+            z-index: 2;
+        }
+        .modal-content .modal-border-side.left {
+            left: 0; top: 0; bottom: 0;
+            width: 6px; height: 0%;
+            transition-delay: 0.2s;
+        }
+        .modal-content .modal-border-side.right {
+            right: 0; top: 0; bottom: 0;
+            width: 6px; height: 0%;
+            transition-delay: 0.4s;
+        }
+        .modal-content.animated-border .modal-border-side.left,
+        .modal-content.animated-border .modal-border-side.right {
+            height: 100%;
+        }
+        @media (max-width: 575.98px) {
+            .modal-content::before, .modal-content::after { height: 4px; }
+            .modal-content .modal-border-side.left,
+            .modal-content .modal-border-side.right { width: 4px; }
+        }
+        /* Köşeden başlayıp saat yönünde dönen kırmızı kenar animasyonu */
+        .modal-animated-border {
+            pointer-events: none;
+        }
+        .modal-animated-border .border-anim {
+            position: absolute;
+            background: #dc3545;
+            z-index: 10;
+            border-radius: 3px;
+        }
+        .modal-animated-border .border-anim.top {
+            left: 0; top: 0;
+            height: 5px; width: 0;
+            animation: borderGrowW 1s cubic-bezier(.4,2,.6,1) 0.1s forwards;
+        }
+        .modal-animated-border .border-anim.right {
+            right: 0; top: 0;
+            width: 5px; height: 0;
+            animation: borderGrowH 1s cubic-bezier(.4,2,.6,1) 1.1s forwards;
+        }
+        .modal-animated-border .border-anim.bottom {
+            right: 0; bottom: 0;
+            height: 5px; width: 0;
+            animation: borderGrowWRev 1s cubic-bezier(.4,2,.6,1) 2.1s forwards;
+        }
+        .modal-animated-border .border-anim.left {
+            left: 0; bottom: 0;
+            width: 5px; height: 0;
+            animation: borderGrowHRev 1s cubic-bezier(.4,2,.6,1) 3.1s forwards;
+        }
+        @keyframes borderGrowW {
+            to { width: 35%; }
+        }
+        @keyframes borderGrowH {
+            to { height: 35%; }
+        }
+        @keyframes borderGrowWRev {
+            to { width: 35%; right: 0; left: auto; }
+        }
+        @keyframes borderGrowHRev {
+            to { height: 35%; }
+        }
+        @media (max-width: 575.98px) {
+            .modal-animated-border .border-anim.top, .modal-animated-border .border-anim.bottom { height: 3px; }
+            .modal-animated-border .border-anim.right, .modal-animated-border .border-anim.left { width: 3px; }
+        }
+        /* Hareketli bağlantılı çizgiler için canvas arka planı */
+        #bg-lines-canvas {
+            position: fixed;
+            left: 0; top: 0; width: 100vw; height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.18;
+        }
+        /* Çalışan kartları ve içerik animasyonun üstünde kalsın */
+        .team-2, .team-box, .team-img, .card-body {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <svg class="bg-dots" width="100%" height="100%" style="position:fixed;z-index:0;left:0;top:0;pointer-events:none;">
+        <circle cx="80" cy="80" r="2" fill="#e0e0e0" opacity="0.3"/>
+        <!-- ...daha fazla nokta... -->
+    </svg>
+
+    <!-- Hareketli bağlantılı çizgiler animasyonu (arka plan) -->
+    <canvas id="bg-lines-canvas"></canvas>
+
+    <!--start team-->
+    <section class="team-2">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="ctk-header text-center mt-4 mb-2">
+                        <div class="ctk-title-bg">
+                            <!-- Başlık tek parça, bölünmeden -->
+                            <h1 class="ctk-title">CUMHURİYET TEKNOKENT KADROMUZ</h1>
+                        </div>
+                        <div class="ctk-underline"></div>
+                    </div>
+                </div><!--end col-->
+            </div><!--end row-->
+            <!-- Yönetim Hiyerarşisi Başlangıç -->
+            <div class="row">
+                <div class="col-lg-12 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="Ali Rıza İNCE"
+                        data-img="images\users-2\h2.jpg"
+                        data-title="Genel Müdür"
+                        data-position="Yönetim"
+                        data-skills="Liderlik, Strateji, İletişim"
+                        data-contact="yasmin@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 111"
+                        data-education="Boğaziçi Üniversitesi, İşletme"
+                        data-social="linkedin=https://linkedin.com/in/kisi,github=https://github.com/kisi"
+                        data-achievements="2022 Yılı En İyi Proje Ödülü, IEEE Üyeliği">
+                        <div class="team-img">
+                            <img src="images\users-2\h2.jpg" alt="img1" class="img-fluid position-relative" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Ali Rıza İNCE</h6></a>
+                            <p class="mb-0 text-muted small">Genel Müdür</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="Selma ÇAMLIBEL"
+                        data-img="images\users-2\selma_camlibel.jpg"
+                        data-title="Genel Müdür Yardımcısı"
+                        data-position="Yönetim"
+                        data-skills="Liderlik, Strateji, İletişim"
+                        data-contact="selma@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 112"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/selma,github=https://github.com/selma"
+                        data-achievements="">
+                        <div class="team-img">
+                            <img src="images\users-2\selma_camlibel.jpg" alt="img2" class="img-fluid" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Selma ÇAMLIBEL</h6></a>
+                            <p class="mb-0 text-muted small">Genel Müdür Yardımcısı</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="Mehmet ÖZER"
+                        data-img="images\users-2\ramazan_Demir.jpg"
+                        data-title="Genel Müdür Yardımcısı"
+                        data-position="Yönetim"
+                        data-skills="Liderlik, Strateji, İletişim"
+                        data-contact="mehmet@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 113"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/mehmet,github=https://github.com/mehmet"
+                        data-achievements="">
+                        <div class="team-img">
+                            <img src="images\users-2\ramazan_Demir.jpg" alt="img3" class="img-fluid" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Mehmet ÖZER</h6></a>
+                            <p class="mb-0 text-muted small">Genel Müdür Yardımcısı</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3"></div>
+            </div>
+            <!-- Yönetim Hiyerarşisi Bitiş -->
+            <!-- 2. 3'lü satır -->
+            <div class="row">
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border">
+                        <div class="team-img">
+                            <img src="images\users-2\h2.jpg" alt="img4" class="img-fluid" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Tuğçegül KARADAĞ</h6></a>
+                            <p class="mb-0 text-muted small">Kurumsal İletişim Koordinatörü</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border">
+                        <div class="team-img">
+                            <img src="images\users-2\h2.jpg" alt="img5" class="img-fluid" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Havvanur KOCATÜRK</h6></a>
+                            <p class="mb-0 text-muted small">Proje Destek Hizmetleri Görevlisi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border">
+                        <div class="team-img">
+                            <img src="images\users-2\ismail_dogan,.jpg" alt="img6" class="img-fluid" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">İsmail DOĞAN</h6></a>
+                            <p class="mb-0 text-muted small">Proje Destek Hizmetleri Görevlisi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="Furkan Boztunç"
+                        data-img="images\users-2\furkan_boztunc.jpg"
+                        data-title="Muhasebe ve Finans Görevlisi"
+                        data-position="Muhasebe"
+                        data-skills="Liderlik, Strateji, İletişim"
+                        data-contact="furkan@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 116"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/furkan,github=https://github.com/furkan"
+                        data-achievements="">
+                        <div class="team-img">
+                            <img src="images\users-2\tugcegul_karadag.jpg" alt="img7" class="img-fluid" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Tuğçegül KARADAĞ</h6></a>
+                            <p class="mb-0 text-muted small">Kurumsal İletişim Koordinatörü</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 3. 3'lü satır -->
+            <div class="row">
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="Havvanur Kocatürk"
+                        data-img="images\users-2\h2.jpg"
+                        data-title="Proje Destek Hizmetleri Görevlisi"
+                        data-position="Proje Destek"
+                        data-skills="Liderlik, Strateji, İletişim"
+                        data-contact="havvanur@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 118"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/havvanur,github=https://github.com/havvanur"
+                        data-achievements="">
+                        <div class="team-img">
+                            <img src="images\users-2\furkan_boztunc.jpg" alt="img9" class="img-fluid" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Furkan BOZTUNÇ</h6></a>
+                            <p class="mb-0 text-muted small">Muhasebe ve Finans Görevlisi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="Hilal Tuba Doğan"
+                        data-img="images\users-2\hilal_hanım.jpg"
+                        data-title="Destek Hizmetler Koordinatörü"
+                        data-position="Destek Hizmetler"
+                        data-skills="Liderlik, Strateji, İletişim"
+                        data-contact="hilal@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 119"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/hilal,github=https://github.com/hilal"
+                        data-achievements="">
+                        <div class="team-img">
+                            <img src="images\users-2\hilal_hanım.jpg" alt="img10" class="img-fluid" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Hilal Tuba Doğan</h6></a>
+                            <p class="mb-0 text-muted small">Destek Hizmetler Koordinatörü</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="Gözde Aktaş"
+                        data-img="images\users-2\gözde_aktas.jpg"
+                        data-title="İş geliştirme Koordinatörü"
+                        data-position="İş geliştirme"
+                        data-skills="Liderlik, Strateji, İletişim"
+                        data-contact="gözde@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 120"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/gözde,github=https://github.com/gözde"
+                        data-achievements="">
+                        <div class="team-img">
+                            <img src="images\users-2\gözde_aktas.jpg" alt="img11" class="img-fluid position-relative" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Gözde Aktaş</h6></a>
+                            <p class="mb-0 text-muted small">İş geliştirme Koordinatörü</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="Alim Akbay"
+                        data-img="images\users-2\alim_akbay.jpg"
+                        data-title="Teknik Hizmetler Görevlisi"
+                        data-position="Teknik Hizmetler"
+                        data-skills="Liderlik, Strateji, İletişim"
+                        data-contact="alim@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 121"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/alim,github=https://github.com/alim"
+                        data-achievements="">
+                        <div class="team-img">
+                            <img src="images\users-2\alim_akbay.jpg" alt="img12" class="img-fluid" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Alim Akbay</h6></a>
+                            <p class="mb-0 text-muted small">Teknik Hizmetler Görevlisi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 4. 3'lü satır -->
+            <div class="row">
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="Yasin Karabulut"
+                        data-img="images\users-2\yasin_karabulut.jpg"
+                        data-title="Elektrik Teknisyeni"
+                        data-position="Teknik Hizmetler"
+                        data-skills="Liderlik, Strateji, İletişim"
+                        data-contact="yasin.karabulut@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 122"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/yasin.karabulut,github=https://github.com/yasin.karabulut"
+                        data-achievements="">
+                        <div class="team-img">
+                            <img src="images\users-2\yasin_karabulut.jpg" alt="img13" class="img-fluid" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Yasin Karabulut</h6></a>
+                            <p class="mb-0 text-muted small">Elektrik Teknisyeni</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="İbrahim Akpınar"
+                        data-img="images\users-2\ibrahım_akpınar.jpg"
+                        data-title="Bakım Teknikeri"
+                        data-position="Teknik Hizmetler"
+                        data-skills="Liderlik, Strateji, İletişim"
+                        data-contact="ibrahim@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 123"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/ibrahim,github=https://github.com/ibrahim"
+                        data-achievements="">
+                        <div class="team-img">
+                            <img src="images\users-2\ibrahım_akpınar.jpg" alt="img14" class="img-fluid" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">İbrahim Akpınar</h6></a>
+                            <p class="mb-0 text-muted small">Bakım Teknikeri</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="Erencan Yıldırım"
+                        data-img="images\users-2\eren_güvenlik.jpg"
+                        data-title="Güvenlik Görevlisi"
+                        data-position="Güvenlik"
+                        data-skills="Liderlik, Strateji, İletişim"
+                        data-contact="erencan@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 124"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/erencan,github=https://github.com/erencan"
+                        data-achievements="">
+                        <div class="team-img">
+                            <img src="images\users-2\eren_güvenlik.jpg" alt="img15" class="img-fluid" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Erencan Yıldırım</h6></a>
+                            <p class="mb-0 text-muted small">Güvenlik Görevlisi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="Yusuf Mermer"
+                        data-img="images\users-2\eren_güvenlik.jpg"
+                        data-title="Güvenlik Görevlisi"
+                        data-position="Güvenlik"
+                        data-skills="Liderlik, Strateji, İletişim"
+                        data-contact="yusuf@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 125"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/yusuf,github=https://github.com/yusuf"
+                        data-achievements="">
+                        <div class="team-img">
+                            <img src="images\users-2\eren_güvenlik.jpg" alt="img16" class="img-fluid" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Yusuf Mermer</h6></a>
+                            <p class="mb-0 text-muted small">Güvenlik Görevlisi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 5. 3'lü satır -->
+            <div class="row">
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="Hayati Çetinkaya"
+                        data-img="images\users-2\eren_güvenlik.jpg"
+                        data-title="Güvenlik Görevlisi"
+                        data-position="Güvenlik"
+                        data-skills="Liderlik, Strateji, İletişim"
+                        data-contact="hayati@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 126"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/hayati,github=https://github.com/hayati"
+                        data-achievements="">
+                        <div class="team-img">
+                            <img src="images\users-2\eren_güvenlik.jpg" alt="img17" class="img-fluid" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Hayati Çetinkaya</h6></a>
+                            <p class="mb-0 text-muted small">Güvenlik Görevlisi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="Hilal Tuba Doğan"
+                        data-img="images\users-2\hilal_hanım.jpg"
+                        data-title="Destek Hizmetler Koordinatörü"
+                        data-position="Destek Hizmetler"
+                        data-skills="Liderlik, Strateji, İletişim"
+                        data-contact="hilal@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 119"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/hilal,github=https://github.com/hilal"
+                        data-achievements="">
+                        <div class="team-img">
+                            <img src="images\users-2\hilal_hanım.jpg" alt="img18" class="img-fluid" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Hilal Tuba Doğan</h6></a>
+                            <p class="mb-0 text-muted small">Destek Hizmetler Koordinatörü</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="Gözde Aktaş"
+                        data-img="images\users-2\gözde_aktas.jpg"
+                        data-title="İş geliştirme Koordinatörü"
+                        data-position="İş geliştirme"
+                        data-skills="Liderlik, Strateji, İletişim"
+                        data-contact="gözde@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 120"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/gözde,github=https://github.com/gözde"
+                        data-achievements="">
+                        <div class="team-img">
+                            <img src="images\users-2\gözde_aktas.jpg" alt="img19" class="img-fluid position-relative" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Gözde Aktaş</h6></a>
+                            <p class="mb-0 text-muted small">İş geliştirme Koordinatörü</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="Alim Akbay"
+                        data-img="images\users-2\alim_akbay.jpg"
+                        data-title="Teknik Hizmetler Görevlisi"
+                        data-position="Teknik Hizmetler"
+                        data-skills="Liderlik, Strateji, İletişim"
+                        data-contact="alim@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 121"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/alim,github=https://github.com/alim"
+                        data-achievements="">
+                        <div class="team-img">
+                            <img src="images\users-2\alim_akbay.jpg" alt="img20" class="img-fluid" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Alim Akbay</h6></a>
+                            <p class="mb-0 text-muted small">Teknik Hizmetler Görevlisi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 6. 3'lü satır -->
+            <div class="row">
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="Yasin Karabulut"
+                        data-img="images\users-2\yasin_karabulut.jpg"
+                        data-title="Elektrik Teknisyeni"
+                        data-position="Teknik Hizmetler"
+                        data-skills="Liderlik, Strateji, İletişim"
+                        data-contact="yasin.karabulut@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 122"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/yasin.karabulut,github=https://github.com/yasin.karabulut"
+                        data-achievements="">
+                        <div class="team-img">
+                            <img src="images\users-2\yasin_karabulut.jpg" alt="img21" class="img-fluid" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Yasin Karabulut</h6></a>
+                            <p class="mb-0 text-muted small">Elektrik Teknisyeni</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="İbrahim Akpınar"
+                        data-img="images\users-2\ibrahım_akpınar.jpg"
+                        data-title="Bakım Teknikeri"
+                        data-position="Teknik Hizmetler"
+                        data-skills="Liderlik, Strateji, İletişim"
+                        data-contact="ibrahim@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 123"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/ibrahim,github=https://github.com/ibrahim"
+                        data-achievements="">
+                        <div class="team-img">
+                            <img src="images\users-2\ibrahım_akpınar.jpg" alt="img22" class="img-fluid" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">İbrahim Akpınar</h6></a>
+                            <p class="mb-0 text-muted small">Bakım Teknikeri</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="Erencan Yıldırım"
+                        data-img="images\users-2\eren_güvenlik.jpg"
+                        data-title="Güvenlik Görevlisi"
+                        data-position="Güvenlik"
+                        data-skills="Liderlik, Strateji, İletişim"
+                        data-contact="erencan@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 124"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/erencan,github=https://github.com/erencan"
+                        data-achievements="">
+                        <div class="team-img">
+                            <img src="images\users-2\eren_güvenlik.jpg" alt="img23" class="img-fluid" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Erencan Yıldırım</h6></a>
+                            <p class="mb-0 text-muted small">Güvenlik Görevlisi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="Yusuf Mermer"
+                        data-img="images\users-2\eren_güvenlik.jpg"
+                        data-title="Güvenlik Görevlisi"
+                        data-position="Güvenlik"
+                        data-skills="Liderlik, Strateji, İletişim"
+                        data-contact="yusuf@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 125"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/yusuf,github=https://github.com/yusuf"
+                        data-achievements="">
+                        <div class="team-img">
+                            <img src="images\users-2\eren_güvenlik.jpg" alt="img24" class="img-fluid" />
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Yusuf Mermer</h6></a>
+                            <p class="mb-0 text-muted small">Güvenlik Görevlisi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center mt-4">
+                        <a href="#" class="btn team-btn rounded-pill">Join Our Team</a>
+                    </div>
+                </div><!--end col-->
+            </div><!--end row-->
+        </div><!--end container-->
+    </section>
+    <!--end team-->
+
+    <!-- Çalışan Detay Modalı -->
+    <div class="modal fade" id="employeeModal" tabindex="-1" aria-labelledby="employeeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" style="max-width:900px;">
+            <div class="modal-content">
+                <div class="modal-header border-0 bg-light justify-content-center">
+                    <div class="modal-title w-100 text-center" id="employeeModalLabel" style="padding-bottom:0;">
+                        <div class="modal-title-underline"></div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-3col">
+                        <!-- Sol Sütun: Fotoğraf -->
+                        <div class="modal-col modal-photo-col">
+                            <img id="employeeModalImg" src="" alt="Çalışan Fotoğrafı">
+                        </div>
+                        <!-- Orta Sütun: Temel Bilgiler -->
+                        <div class="modal-col modal-info-col">
+                            <div id="employeeModalName" class="modal-name">Ad Soyad</div>
+                            <div id="employeeModalPosition" class="modal-position">Pozisyon</div>
+                            <div id="employeeModalDepartment" class="modal-department">Birim / Departman</div>
+                            <div id="employeeModalEmail" class="modal-email"></div>
+                            <div id="employeeModalInternal" class="modal-internal"></div>
+                        </div>
+                        <!-- Sağ Sütun: Ek Bilgiler -->
+                        <div class="modal-col modal-extra-col">
+                            <div id="employeeModalSocial" class="modal-social"></div>
+                            <div id="employeeModalAchievements" class="modal-achievements"></div>
+                            <ul id="employeeModalSkills" class="modal-skills"></ul>
+                            <div id="employeeModalEducation" class="modal-education"></div>
+                            <div id="employeeModalBio" class="modal-bio"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+    document.querySelectorAll('.team-name').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            var box = link.closest('.team-box');
+            document.getElementById('employeeModalImg').src = box.getAttribute('data-img') || '';
+            document.getElementById('employeeModalName').textContent = box.getAttribute('data-name') || '';
+            document.getElementById('employeeModalPosition').textContent = box.getAttribute('data-title') || '';
+            document.getElementById('employeeModalDepartment').textContent = box.getAttribute('data-position') || '';
+            document.getElementById('employeeModalEmail').textContent = box.getAttribute('data-contact') || '';
+            var internal = box.getAttribute('data-contact-number') || '';
+            document.getElementById('employeeModalInternal').textContent = internal ? internal : '';
+            document.getElementById('employeeModalSocial').innerHTML = box.getAttribute('data-social') || '';
+            document.getElementById('employeeModalAchievements').textContent = box.getAttribute('data-achievements') || '';
+            document.getElementById('employeeModalSkills').innerHTML = (box.getAttribute('data-skills') || '').split(',').map(s => `<li>${s.trim()}</li>`).join('');
+            document.getElementById('employeeModalEducation').textContent = box.getAttribute('data-education') || '';
+            document.getElementById('employeeModalBio').textContent = box.getAttribute('data-bio') || '';
+            var modal = new bootstrap.Modal(document.getElementById('employeeModal'));
+            modal.show();
+        });
+    });
+    // Kenar animasyonunu scroll ile tetikleme
+    function revealBordersOnScroll() {
+        document.querySelectorAll('.team-animate-border').forEach(function(el) {
+            var rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 60) {
+                el.classList.add('visible');
+            }
+        });
+    }
+    window.addEventListener('scroll', revealBordersOnScroll);
+    window.addEventListener('DOMContentLoaded', revealBordersOnScroll);
+    // Modal açıldığında köşeden başlayıp dönen kırmızı kenar animasyonu ekle
+    var employeeModal = document.getElementById('employeeModal');
+    employeeModal.addEventListener('show.bs.modal', function () {
+        setTimeout(function() {
+            var modalContent = employeeModal.querySelector('.modal-content');
+            if (modalContent) {
+                // Önce varsa eski animasyonları temizle
+                var oldBorder = modalContent.querySelector('.modal-animated-border');
+                if (oldBorder) oldBorder.remove();
+                // Yeni animasyon divlerini ekle
+                var borderDiv = document.createElement('div');
+                borderDiv.className = 'modal-animated-border';
+                borderDiv.innerHTML = `
+                    <div class="border-anim top"></div>
+                    <div class="border-anim right"></div>
+                    <div class="border-anim bottom"></div>
+                    <div class="border-anim left"></div>
+                `;
+                modalContent.appendChild(borderDiv);
+            }
+        }, 100);
+    });
+    employeeModal.addEventListener('hidden.bs.modal', function () {
+        var modalContent = employeeModal.querySelector('.modal-content');
+        if (modalContent) {
+            var oldBorder = modalContent.querySelector('.modal-animated-border');
+            if (oldBorder) oldBorder.remove();
+        }
+    });
+    // Sayfa kenarı animasyonunu tetikle
+    window.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            document.body.classList.add('page-border-animate');
+        }, 200);
+    });
+    // Türkçe açıklamalı: Hareketli bağlantılı çizgiler animasyonu
+    (function() {
+        // Ayarlar
+        var noktaSayisi = 40; // Nokta adedi (çok daha fazla ve yoğun)
+        var baglantiMesafesi = 120; // Çizgi çekilecek maksimum mesafe (daha uzun)
+        var noktaRenk = '#dc3545'; // Çizgi ve nokta rengi
+        var noktaYaricapi = 3.2; // Nokta yarıçapı (daha büyük)
+        var cizgiKalınligi = 1.7; // Çizgi kalınlığı (daha kalın)
+        var opaklik = 0.90; // Çizgi ve nokta opaklığı (belirgin)
+
+        var canvas = document.getElementById('bg-lines-canvas');
+        var ctx = canvas.getContext('2d');
+        var noktalar = [];
+        // Fare imleci için hayali bir nokta
+        var mouse = { x: null, y: null, aktif: false };
+
+        // Fare hareketini dinle
+        window.addEventListener('mousemove', function(e) {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+            mouse.aktif = true;
+        });
+        window.addEventListener('mouseleave', function() {
+            mouse.aktif = false;
+        });
+
+        // Canvas boyutunu pencereye göre ayarla
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Nokta nesnesi oluştur
+        function Nokta() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.5; // Hız 2 katına çıkarıldı
+            this.vy = (Math.random() - 0.5) * 0.5;
+        }
+
+        // Noktaları başlat
+        for (var i = 0; i < noktaSayisi; i++) {
+            noktalar.push(new Nokta());
+        }
+
+        // Animasyon döngüsü
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // --- Çalışan kartlarının ve isimlerinin olduğu alanları topla ---
+            var engellenenAlanlar = [];
+            // Tüm .team-box ve .card-body elementlerinin konumunu al
+            document.querySelectorAll('.team-box, .card-body').forEach(function(el) {
+                var rect = el.getBoundingClientRect();
+                // Sayfa scroll'u hesaba kat
+                engellenenAlanlar.push({
+                    x: rect.left + window.scrollX,
+                    y: rect.top + window.scrollY,
+                    w: rect.width,
+                    h: rect.height
+                });
+            });
+
+            // Noktaları hareket ettir
+            for (var i = 0; i < noktalar.length; i++) {
+                var n = noktalar[i];
+                n.x += n.vx;
+                n.y += n.vy;
+                // Kenarlardan sekme
+                if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+                if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+
+                // Fareye yakınsa hafifçe fareye çekilsin
+                if (mouse.aktif) {
+                    var dx = mouse.x - n.x;
+                    var dy = mouse.y - n.y;
+                    var dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < baglantiMesafesi * 1.1) {
+                        n.x += dx * 0.008;
+                        n.y += dy * 0.008;
+                    }
+                }
+            }
+
+            // Noktalar arası çizgiler
+            for (var i = 0; i < noktalar.length; i++) {
+                for (var j = i + 1; j < noktalar.length; j++) {
+                    var n1 = noktalar[i];
+                    var n2 = noktalar[j];
+                    var dx = n1.x - n2.x;
+                    var dy = n1.y - n2.y;
+                    var dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < baglantiMesafesi) {
+                        // Eğer çizgi engellenen alanlardan birinin içindeyse çizme
+                        var engelVar = false;
+                        for (var k = 0; k < engellenenAlanlar.length; k++) {
+                            var alan = engellenenAlanlar[k];
+                            // Her iki nokta da aynı engellenen alanın içindeyse çizme
+                            if (
+                                n1.x > alan.x && n1.x < alan.x + alan.w && n1.y > alan.y && n1.y < alan.y + alan.h &&
+                                n2.x > alan.x && n2.x < alan.x + alan.w && n2.y > alan.y && n2.y < alan.y + alan.h
+                            ) {
+                                engelVar = true;
+                                break;
+                            }
+                        }
+                        if (!engelVar) {
+                            ctx.save();
+                            ctx.globalAlpha = opaklik * (1 - dist / baglantiMesafesi);
+                            ctx.strokeStyle = noktaRenk;
+                            ctx.lineWidth = cizgiKalınligi;
+                            ctx.beginPath();
+                            ctx.moveTo(n1.x, n1.y);
+                            ctx.lineTo(n2.x, n2.y);
+                            ctx.stroke();
+                            ctx.restore();
+                        }
+                    }
+                }
+            }
+
+            // Fareye yakın noktalar fareye çizgiyle bağlansın
+            if (mouse.aktif) {
+                for (var i = 0; i < noktalar.length; i++) {
+                    var n = noktalar[i];
+                    var dx = mouse.x - n.x;
+                    var dy = mouse.y - n.y;
+                    var dist = Math.sqrt(dx * dx + dy * dy);
+                    // Eğer çizgi engellenen alanlardan birinin içindeyse çizme
+                    var engelVar = false;
+                    for (var k = 0; k < engellenenAlanlar.length; k++) {
+                        var alan = engellenenAlanlar[k];
+                        if (
+                            n.x > alan.x && n.x < alan.x + alan.w && n.y > alan.y && n.y < alan.y + alan.h &&
+                            mouse.x > alan.x && mouse.x < alan.x + alan.w && mouse.y > alan.y && mouse.y < alan.y + alan.h
+                        ) {
+                            engelVar = true;
+                            break;
+                        }
+                    }
+                    if (dist < baglantiMesafesi * 1.1 && !engelVar) {
+                        ctx.save();
+                        ctx.globalAlpha = opaklik * (1 - dist / (baglantiMesafesi * 1.1));
+                        ctx.strokeStyle = noktaRenk;
+                        ctx.lineWidth = cizgiKalınligi + 0.2;
+                        ctx.beginPath();
+                        ctx.moveTo(n.x, n.y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.stroke();
+                        ctx.restore();
+                    }
+                }
+                // Fareyi de bir nokta gibi çiz (engellenen alanların dışında ise)
+                var mouseEngel = false;
+                for (var k = 0; k < engellenenAlanlar.length; k++) {
+                    var alan = engellenenAlanlar[k];
+                    if (
+                        mouse.x > alan.x && mouse.x < alan.x + alan.w && mouse.y > alan.y && mouse.y < alan.y + alan.h
+                    ) {
+                        mouseEngel = true;
+                        break;
+                    }
+                }
+                if (!mouseEngel) {
+                    ctx.save();
+                    ctx.globalAlpha = opaklik;
+                    ctx.fillStyle = noktaRenk;
+                    ctx.beginPath();
+                    ctx.arc(mouse.x, mouse.y, noktaYaricapi * 1.25, 0, 2 * Math.PI);
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+
+            // Noktaları çiz (engellenen alanların dışında ise)
+            for (var i = 0; i < noktalar.length; i++) {
+                var n = noktalar[i];
+                var engelVar = false;
+                for (var k = 0; k < engellenenAlanlar.length; k++) {
+                    var alan = engellenenAlanlar[k];
+                    if (n.x > alan.x && n.x < alan.x + alan.w && n.y > alan.y && n.y < alan.y + alan.h) {
+                        engelVar = true;
+                        break;
+                    }
+                }
+                if (!engelVar) {
+                    ctx.save();
+                    ctx.globalAlpha = opaklik;
+                    ctx.fillStyle = noktaRenk;
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, noktaYaricapi, 0, 2 * Math.PI);
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+    })();
+    </script>
+</body>
+
+</html>

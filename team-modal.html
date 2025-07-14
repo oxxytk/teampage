@@ -1,0 +1,38 @@
+<!--
+Bu dosya: Çalışan Detay Penceresi (team-modal.html)
+Bir çalışanın detaylarını gösteren açılır pencere (modal) kodları burada bulunur.
+-->
+<div class="modal fade" id="employeeModal" tabindex="-1" aria-labelledby="employeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width:900px;">
+        <div class="modal-content">
+            <div class="modal-header border-0 bg-light justify-content-center">
+                <div class="modal-title w-100 text-center" id="employeeModalLabel" style="padding-bottom:0;">
+                    <div class="modal-title-underline"></div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-3col">
+                    <!-- Sol Sütun: Fotoğraf -->
+                    <div class="modal-col modal-photo-col">
+                        <img id="employeeModalImg" src="" alt="Çalışan Fotoğrafı">
+                    </div>
+                    <!-- Orta Sütun: Temel Bilgiler -->
+                    <div class="modal-col modal-info-col">
+                        <div id="employeeModalName" class="modal-name">Ad Soyad</div>
+                        <div id="employeeModalPosition" class="modal-position">Pozisyon</div>
+                        <div id="employeeModalDepartment" class="modal-department">Birim / Departman</div>
+                        <div id="employeeModalEmail" class="modal-email"></div>
+                    </div>
+                    <!-- Sağ Sütun: Ek Bilgiler -->
+                    <div class="modal-col modal-extra-col">
+                        <div id="employeeModalSocial" class="modal-social"></div>
+                        <div id="employeeModalAchievements" class="modal-achievements"></div>
+                        <ul id="employeeModalSkills" class="modal-skills"></ul>
+                        <div id="employeeModalEducation" class="modal-education"></div>
+                        <div id="employeeModalBio" class="modal-bio"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

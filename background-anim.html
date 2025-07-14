@@ -1,0 +1,200 @@
+<!--
+Bu dosya: Arka Plan Animasyonu (background-anim.html)
+Sayfanın arka planında hareketli bağlantılı çizgiler ve noktalar animasyonu için canvas ve script kodları burada bulunur.
+-->
+<canvas id="bg-lines-canvas"></canvas>
+<script>
+// Hareketli bağlantılı çizgiler animasyonu (tamamı Türkçe açıklamalı)
+(function() {
+    // Ayarlar
+    var noktaSayisi = 40; // Nokta adedi
+    var baglantiMesafesi = 120; // Çizgi çekilecek maksimum mesafe
+    var noktaRenk = '#dc3545'; // Çizgi ve nokta rengi
+    var noktaYaricapi = 3.2; // Nokta yarıçapı
+    var cizgiKalınligi = 1.7; // Çizgi kalınlığı
+    var opaklik = 0.90; // Çizgi ve nokta opaklığı
+
+    var canvas = document.getElementById('bg-lines-canvas');
+    var ctx = canvas.getContext('2d');
+    var noktalar = [];
+    // Fare imleci için hayali bir nokta
+    var mouse = { x: null, y: null, aktif: false };
+
+    // Fare hareketini dinle
+    window.addEventListener('mousemove', function(e) {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+        mouse.aktif = true;
+    });
+    window.addEventListener('mouseleave', function() {
+        mouse.aktif = false;
+    });
+
+    // Canvas boyutunu pencereye göre ayarla
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Nokta nesnesi oluştur
+    function Nokta() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+    }
+
+    // Noktaları başlat
+    for (var i = 0; i < noktaSayisi; i++) {
+        noktalar.push(new Nokta());
+    }
+
+    // Animasyon döngüsü
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // --- Çalışan kartlarının ve isimlerinin olduğu alanları topla ---
+        var engellenenAlanlar = [];
+        document.querySelectorAll('.team-box, .card-body').forEach(function(el) {
+            var rect = el.getBoundingClientRect();
+            engellenenAlanlar.push({
+                x: rect.left + window.scrollX,
+                y: rect.top + window.scrollY,
+                w: rect.width,
+                h: rect.height
+            });
+        });
+
+        // Noktaları hareket ettir
+        for (var i = 0; i < noktalar.length; i++) {
+            var n = noktalar[i];
+            n.x += n.vx;
+            n.y += n.vy;
+            if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+            if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+            if (mouse.aktif) {
+                var dx = mouse.x - n.x;
+                var dy = mouse.y - n.y;
+                var dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < baglantiMesafesi * 1.1) {
+                    n.x += dx * 0.008;
+                    n.y += dy * 0.008;
+                }
+            }
+        }
+
+        // Noktalar arası çizgiler
+        for (var i = 0; i < noktalar.length; i++) {
+            for (var j = i + 1; j < noktalar.length; j++) {
+                var n1 = noktalar[i];
+                var n2 = noktalar[j];
+                var dx = n1.x - n2.x;
+                var dy = n1.y - n2.y;
+                var dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < baglantiMesafesi) {
+                    var engelVar = false;
+                    for (var k = 0; k < engellenenAlanlar.length; k++) {
+                        var alan = engellenenAlanlar[k];
+                        if (
+                            n1.x > alan.x && n1.x < alan.x + alan.w && n1.y > alan.y && n1.y < alan.y + alan.h &&
+                            n2.x > alan.x && n2.x < alan.x + alan.w && n2.y > alan.y && n2.y < alan.y + alan.h
+                        ) {
+                            engelVar = true;
+                            break;
+                        }
+                    }
+                    if (!engelVar) {
+                        ctx.save();
+                        ctx.globalAlpha = opaklik * (1 - dist / baglantiMesafesi);
+                        ctx.strokeStyle = noktaRenk;
+                        ctx.lineWidth = cizgiKalınligi;
+                        ctx.beginPath();
+                        ctx.moveTo(n1.x, n1.y);
+                        ctx.lineTo(n2.x, n2.y);
+                        ctx.stroke();
+                        ctx.restore();
+                    }
+                }
+            }
+        }
+
+        // Fareye yakın noktalar fareye çizgiyle bağlansın
+        if (mouse.aktif) {
+            for (var i = 0; i < noktalar.length; i++) {
+                var n = noktalar[i];
+                var dx = mouse.x - n.x;
+                var dy = mouse.y - n.y;
+                var dist = Math.sqrt(dx * dx + dy * dy);
+                var engelVar = false;
+                for (var k = 0; k < engellenenAlanlar.length; k++) {
+                    var alan = engellenenAlanlar[k];
+                    if (
+                        n.x > alan.x && n.x < alan.x + alan.w && n.y > alan.y && n.y < alan.y + alan.h &&
+                        mouse.x > alan.x && mouse.x < alan.x + alan.w && mouse.y > alan.y && mouse.y < alan.y + alan.h
+                    ) {
+                        engelVar = true;
+                        break;
+                    }
+                }
+                if (dist < baglantiMesafesi * 1.1 && !engelVar) {
+                    ctx.save();
+                    ctx.globalAlpha = opaklik * (1 - dist / (baglantiMesafesi * 1.1));
+                    ctx.strokeStyle = noktaRenk;
+                    ctx.lineWidth = cizgiKalınligi + 0.2;
+                    ctx.beginPath();
+                    ctx.moveTo(n.x, n.y);
+                    ctx.lineTo(mouse.x, mouse.y);
+                    ctx.stroke();
+                    ctx.restore();
+                }
+            }
+            var mouseEngel = false;
+            for (var k = 0; k < engellenenAlanlar.length; k++) {
+                var alan = engellenenAlanlar[k];
+                if (
+                    mouse.x > alan.x && mouse.x < alan.x + alan.w && mouse.y > alan.y && mouse.y < alan.y + alan.h
+                ) {
+                    mouseEngel = true;
+                    break;
+                }
+            }
+            if (!mouseEngel) {
+                ctx.save();
+                ctx.globalAlpha = opaklik;
+                ctx.fillStyle = noktaRenk;
+                ctx.beginPath();
+                ctx.arc(mouse.x, mouse.y, noktaYaricapi * 1.25, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        // Noktaları çiz (engellenen alanların dışında ise)
+        for (var i = 0; i < noktalar.length; i++) {
+            var n = noktalar[i];
+            var engelVar = false;
+            for (var k = 0; k < engellenenAlanlar.length; k++) {
+                var alan = engellenenAlanlar[k];
+                if (n.x > alan.x && n.x < alan.x + alan.w && n.y > alan.y && n.y < alan.y + alan.h) {
+                    engelVar = true;
+                    break;
+                }
+            }
+            if (!engelVar) {
+                ctx.save();
+                ctx.globalAlpha = opaklik;
+                ctx.fillStyle = noktaRenk;
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, noktaYaricapi, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        requestAnimationFrame(animate);
+    }
+    animate();
+})();
+</script> 
