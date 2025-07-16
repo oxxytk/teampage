@@ -24,6 +24,15 @@
     <!-- Google Fonts: Montserrat başlık fontu -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
 
+    <!-- Google Fonts: Bebas Neue başlık fontu -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <!-- Google Fonts: Noto Sans Arabic başlık fontu (Thin 100) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100&display=swap" rel="stylesheet">
+
+    <!-- Google Fonts: Open Sans başlık fontu (Light 300) -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+
     <!-- Sayfa içi animasyon CSS'i (isteğe bağlı style.css'e taşı) -->
     <style>
         /* .team-social ve hover paneli kaldırıldı */
@@ -43,13 +52,26 @@
             width: 100%;
         }
 
+        /* Genel müdür yardımcıları arası mesafe ve kart ölçüsü eşitleme */
+        .gmy-space {
+            margin-left: 24px !important;
+            margin-right: 24px !important;
+        }
         .team-box {
             min-height: 420px;
+            max-width: 350px;
+            width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             box-shadow: 0 2px 16px rgba(220,53,69,0.07);
             transition: box-shadow 0.3s, border 0.3s;
+        }
+        @media (max-width: 991.98px) {
+            .gmy-space {
+                margin-left: 8px !important;
+                margin-right: 8px !important;
+            }
         }
 
         .team-box:hover {
@@ -241,28 +263,30 @@
             overflow: visible;
         }
         .ctk-title {
-            display: block;
-            width: 100%;
-            text-align: center;
-            padding: 1.1rem 0.5rem 1.1rem 0.5rem;
-            margin: 0;
-            position: relative;
-            z-index: 2;
-            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-            font-size: 2rem;
-            font-weight: 400;
-            color: #222;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
+            font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
+            font-size: 3.2rem;
+            font-weight: 300;
+            letter-spacing: 0.06em;
+            color: #dc3545;
+            text-shadow: none;
+            background: none;
+            margin-bottom: 0.2em;
+            padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+            border-radius: 0.2em;
+            transition: none;
+        }
+        .ctk-title:hover {
+            color: #dc3545;
+            text-shadow: none;
         }
         @media (max-width: 991.98px) {
             .ctk-title {
-                font-size: 1.5rem;
+                font-size: 2.1rem;
             }
         }
         @media (max-width: 575.98px) {
             .ctk-title {
-                font-size: 1.05rem;
+                font-size: 1.25rem;
                 padding: 0.7rem 0.2rem 0.7rem 0.2rem;
             }
         }
@@ -590,6 +614,10 @@
             position: relative;
             z-index: 2;
         }
+        .surname {
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
     </style>
 </head>
 
@@ -621,7 +649,7 @@
                 <div class="col-lg-12 d-flex justify-content-center">
                     <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
                         data-name="Ali Rıza İNCE"
-                        data-img="images\users-2\h2.jpg"
+                        data-img="images\users-2\ali_riza_ince2.jpg"
                         data-title="Genel Müdür"
                         data-position="Yönetim"
                         data-skills="Liderlik, Strateji, İletişim"
@@ -631,26 +659,26 @@
                         data-social="linkedin=https://linkedin.com/in/kisi,github=https://github.com/kisi"
                         data-achievements="2022 Yılı En İyi Proje Ödülü, IEEE Üyeliği">
                         <div class="team-img">
-                            <img src="images\users-2\h2.jpg" alt="img1" class="img-fluid position-relative" />
+                            <img src="images\users-2\ali_riza_ince2.jpg" alt="img1" class="img-fluid position-relative" />
                         </div>
                         <div class="card-body text-center">
-                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Ali Rıza İNCE</h6></a>
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Ali Rıza <span class="surname">İNCE</span></h6></a>
                             <p class="mb-0 text-muted small">Genel Müdür</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3"></div>
-                <div class="col-lg-3 d-flex justify-content-center">
-                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                <div class="col-lg-2"></div>
+                <div class="col-lg-4 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border gmy-space"
                         data-name="Selma ÇAMLIBEL"
                         data-img="images\users-2\selma_camlibel.jpg"
                         data-title="Genel Müdür Yardımcısı"
                         data-position="Yönetim"
                         data-skills="Liderlik, Strateji, İletişim"
                         data-contact="selma@example.com"
-                        data-contact-number="Dahili Numara (İç Hat): 112"
+                        data-contact-number="Dahili Numara (İç Hat): 140"
                         data-education="Üniversite, Bölüm"
                         data-social="linkedin=https://linkedin.com/in/selma,github=https://github.com/selma"
                         data-achievements="">
@@ -663,20 +691,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 d-flex justify-content-center">
-                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                <div class="col-lg-4 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border gmy-space"
                         data-name="Mehmet ÖZER"
-                        data-img="images\users-2\ramazan_Demir.jpg"
+                        data-img="images\users-2\mehmet_özer4.jpg"
                         data-title="Genel Müdür Yardımcısı"
                         data-position="Yönetim"
                         data-skills="Liderlik, Strateji, İletişim"
                         data-contact="mehmet@example.com"
-                        data-contact-number="Dahili Numara (İç Hat): 113"
+                        data-contact-number="Dahili Numara (İç Hat): 112"
                         data-education="Üniversite, Bölüm"
                         data-social="linkedin=https://linkedin.com/in/mehmet,github=https://github.com/mehmet"
                         data-achievements="">
                         <div class="team-img">
-                            <img src="images\users-2\ramazan_Demir.jpg" alt="img3" class="img-fluid" />
+                            <img src="images\users-2\mehmet_özer4.jpg" alt="img3" class="img-fluid" />
                         </div>
                         <div class="card-body text-center">
                             <a href="#" class="team-name"><h6 class="mb-1 sub-title">Mehmet ÖZER</h6></a>
@@ -684,35 +712,65 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3"></div>
+                <div class="col-lg-2"></div>
             </div>
             <!-- Yönetim Hiyerarşisi Bitiş -->
-            <!-- 2. 3'lü satır -->
+            <!-- 15 kişilik ekip: 5 satır, her satırda 3 kişi olacak şekilde düzenlendi -->
             <div class="row">
-                <div class="col-lg-3 d-flex justify-content-center">
-                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border">
+                <div class="col-lg-4 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="Ramazan DEMİR"
+                        data-img="images\users-2\ramazan_Demir.jpg"
+                        data-title="Üniversite Sanayi İşbirliği Koordinatörü"
+                        data-position="Yönetim"
+                        data-skills="İşbirliği, Koordinasyon, İletişim"
+                        data-contact="ramazan@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 130"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/ramazan,github=https://github.com/ramazan"
+                        data-achievements="">
                         <div class="team-img">
-                            <img src="images\users-2\h2.jpg" alt="img4" class="img-fluid" />
+                            <img src="images\users-2\ramazan_Demir.jpg" alt="img4" class="img-fluid" />
                         </div>
                         <div class="card-body text-center">
-                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Tuğçegül KARADAĞ</h6></a>
-                            <p class="mb-0 text-muted small">Kurumsal İletişim Koordinatörü</p>
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Ramazan DEMİR</h6></a>
+                            <p class="mb-0 text-muted small">Üniversite Sanayi İşbirliği Koordinatörü</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 d-flex justify-content-center">
-                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border">
+                <div class="col-lg-4 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="Abdulbaki GÖK"
+                        data-img="images\users-2\Baki_hoca.jpg"
+                        data-title="Kurmaylık ve Kalite Koordinatörü / Farkındalık ve Eğitim Hizmetleri Koordinatörü"
+                        data-position="Yönetim"
+                        data-skills="Kurumsal Gelişim, Eğitim, Kalite"
+                        data-contact="abdulbaki@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 131"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/abdulbaki,github=https://github.com/abdulbaki"
+                        data-achievements="">
                         <div class="team-img">
-                            <img src="images\users-2\h2.jpg" alt="img5" class="img-fluid" />
+                            <img src="images\users-2\Baki_hoca.jpg" alt="img5" class="img-fluid" />
                         </div>
                         <div class="card-body text-center">
-                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Havvanur KOCATÜRK</h6></a>
-                            <p class="mb-0 text-muted small">Proje Destek Hizmetleri Görevlisi</p>
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Abdulbaki <span class="surname">GÖK</span></h6></a>
+                            <p class="mb-0 text-muted small">Kurmaylık ve Kalite Koordinatörü<br>Farkındalık ve Eğitim Hizmetleri Koordinatörü</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 d-flex justify-content-center">
-                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border">
+                <div class="col-lg-4 d-flex justify-content-center">
+                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
+                        data-name="İsmail DOĞAN"
+                        data-img="images\users-2\ismail_dogan,.jpg"
+                        data-title="Proje Destek Hizmetleri Görevlisi"
+                        data-position="Proje Destek"
+                        data-skills="Proje Yönetimi, Destek, İletişim"
+                        data-contact="ismail@example.com"
+                        data-contact-number="Dahili Numara (İç Hat): 132"
+                        data-education="Üniversite, Bölüm"
+                        data-social="linkedin=https://linkedin.com/in/ismail,github=https://github.com/ismail"
+                        data-achievements="">
                         <div class="team-img">
                             <img src="images\users-2\ismail_dogan,.jpg" alt="img6" class="img-fluid" />
                         </div>
@@ -722,15 +780,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 d-flex justify-content-center">
+            </div>
+            <div class="row">
+                <div class="col-lg-4 d-flex justify-content-center">
                     <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
-                        data-name="Furkan Boztunç"
-                        data-img="images\users-2\furkan_boztunc.jpg"
-                        data-title="Muhasebe ve Finans Görevlisi"
+                        data-name="Tuğçegül KARADAĞ"
+                        data-img="images\users-2\tugcegul_karadag.jpg"
+                        data-title="Kurumsal İletişim Koordinatörü / Bilişim Uzmanı"
                         data-position="Muhasebe"
                         data-skills="Liderlik, Strateji, İletişim"
                         data-contact="furkan@example.com"
-                        data-contact-number="Dahili Numara (İç Hat): 116"
+                        data-contact-number="Dahili Numara (İç Hat): 121"
                         data-education="Üniversite, Bölüm"
                         data-social="linkedin=https://linkedin.com/in/furkan,github=https://github.com/furkan"
                         data-achievements="">
@@ -739,14 +799,11 @@
                         </div>
                         <div class="card-body text-center">
                             <a href="#" class="team-name"><h6 class="mb-1 sub-title">Tuğçegül KARADAĞ</h6></a>
-                            <p class="mb-0 text-muted small">Kurumsal İletişim Koordinatörü</p>
+                            <p class="mb-0 text-muted small">Kurumsal İletişim Koordinatörü / Bilişim Uzmanı</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- 3. 3'lü satır -->
-            <div class="row">
-                <div class="col-lg-3 d-flex justify-content-center">
+                <div class="col-lg-4 d-flex justify-content-center">
                     <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
                         data-name="Havvanur Kocatürk"
                         data-img="images\users-2\h2.jpg"
@@ -754,28 +811,28 @@
                         data-position="Proje Destek"
                         data-skills="Liderlik, Strateji, İletişim"
                         data-contact="havvanur@example.com"
-                        data-contact-number="Dahili Numara (İç Hat): 118"
+                        data-contact-number="Dahili Numara (İç Hat): 114"
                         data-education="Üniversite, Bölüm"
                         data-social="linkedin=https://linkedin.com/in/havvanur,github=https://github.com/havvanur"
                         data-achievements="">
                         <div class="team-img">
-                            <img src="images\users-2\furkan_boztunc.jpg" alt="img9" class="img-fluid" />
+                            <img src="images\users-2\h2.jpg" alt="img9" class="img-fluid" />
                         </div>
                         <div class="card-body text-center">
-                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Furkan BOZTUNÇ</h6></a>
-                            <p class="mb-0 text-muted small">Muhasebe ve Finans Görevlisi</p>
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Havvanur KOCATÜRK</h6></a>
+                            <p class="mb-0 text-muted small">Kalite Görevlisi</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 d-flex justify-content-center">
+                <div class="col-lg-4 d-flex justify-content-center">
                     <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
-                        data-name="Hilal Tuba Doğan"
+                        data-name="Hilal Tuba DOĞAN"
                         data-img="images\users-2\hilal_hanım.jpg"
                         data-title="Destek Hizmetler Koordinatörü"
                         data-position="Destek Hizmetler"
                         data-skills="Liderlik, Strateji, İletişim"
                         data-contact="hilal@example.com"
-                        data-contact-number="Dahili Numara (İç Hat): 119"
+                        data-contact-number="Dahili Numara (İç Hat): 117"
                         data-education="Üniversite, Bölüm"
                         data-social="linkedin=https://linkedin.com/in/hilal,github=https://github.com/hilal"
                         data-achievements="">
@@ -783,20 +840,22 @@
                             <img src="images\users-2\hilal_hanım.jpg" alt="img10" class="img-fluid" />
                         </div>
                         <div class="card-body text-center">
-                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Hilal Tuba Doğan</h6></a>
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Hilal Tuba DOĞAN</h6></a>
                             <p class="mb-0 text-muted small">Destek Hizmetler Koordinatörü</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 d-flex justify-content-center">
+            </div>
+            <div class="row">
+                <div class="col-lg-4 d-flex justify-content-center">
                     <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
-                        data-name="Gözde Aktaş"
+                        data-name="Gözde AKTAŞ"
                         data-img="images\users-2\gözde_aktas.jpg"
                         data-title="İş geliştirme Koordinatörü"
                         data-position="İş geliştirme"
                         data-skills="Liderlik, Strateji, İletişim"
                         data-contact="gözde@example.com"
-                        data-contact-number="Dahili Numara (İç Hat): 120"
+                        data-contact-number="Dahili Numara (İç Hat): 116"
                         data-education="Üniversite, Bölüm"
                         data-social="linkedin=https://linkedin.com/in/gözde,github=https://github.com/gözde"
                         data-achievements="">
@@ -804,20 +863,20 @@
                             <img src="images\users-2\gözde_aktas.jpg" alt="img11" class="img-fluid position-relative" />
                         </div>
                         <div class="card-body text-center">
-                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Gözde Aktaş</h6></a>
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Gözde AKTAŞ</h6></a>
                             <p class="mb-0 text-muted small">İş geliştirme Koordinatörü</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 d-flex justify-content-center">
+                <div class="col-lg-4 d-flex justify-content-center">
                     <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
-                        data-name="Alim Akbay"
+                        data-name="Alim AKBAY"
                         data-img="images\users-2\alim_akbay.jpg"
                         data-title="Teknik Hizmetler Görevlisi"
                         data-position="Teknik Hizmetler"
                         data-skills="Liderlik, Strateji, İletişim"
                         data-contact="alim@example.com"
-                        data-contact-number="Dahili Numara (İç Hat): 121"
+                        data-contact-number="Dahili Numara (İç Hat): 115"
                         data-education="Üniversite, Bölüm"
                         data-social="linkedin=https://linkedin.com/in/alim,github=https://github.com/alim"
                         data-achievements="">
@@ -825,15 +884,12 @@
                             <img src="images\users-2\alim_akbay.jpg" alt="img12" class="img-fluid" />
                         </div>
                         <div class="card-body text-center">
-                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Alim Akbay</h6></a>
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Alim AKBAY</h6></a>
                             <p class="mb-0 text-muted small">Teknik Hizmetler Görevlisi</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- 4. 3'lü satır -->
-            <div class="row">
-                <div class="col-lg-3 d-flex justify-content-center">
+                <div class="col-lg-4 d-flex justify-content-center">
                     <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
                         data-name="Yasin Karabulut"
                         data-img="images\users-2\yasin_karabulut.jpg"
@@ -854,9 +910,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 d-flex justify-content-center">
+            </div>
+            <div class="row">
+                <div class="col-lg-4 d-flex justify-content-center">
                     <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
-                        data-name="İbrahim Akpınar"
+                        data-name="İbrahim AKPINAR"
                         data-img="images\users-2\ibrahım_akpınar.jpg"
                         data-title="Bakım Teknikeri"
                         data-position="Teknik Hizmetler"
@@ -875,32 +933,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 d-flex justify-content-center">
+                <div class="col-lg-4 d-flex justify-content-center">
                     <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
-                        data-name="Erencan Yıldırım"
-                        data-img="images\users-2\eren_güvenlik.jpg"
-                        data-title="Güvenlik Görevlisi"
+                        data-name="Furkan BOZTUNÇ"
+                        data-img="images\users-2\furkan_boztunc.jpg"
+                        data-title="Muhasebe ve Finans Görevlisi"
                         data-position="Güvenlik"
                         data-skills="Liderlik, Strateji, İletişim"
                         data-contact="erencan@example.com"
-                        data-contact-number="Dahili Numara (İç Hat): 124"
+                        data-contact-number="Dahili Numara (İç Hat): 113"
                         data-education="Üniversite, Bölüm"
                         data-social="linkedin=https://linkedin.com/in/erencan,github=https://github.com/erencan"
                         data-achievements="">
                         <div class="team-img">
-                            <img src="images\users-2\eren_güvenlik.jpg" alt="img15" class="img-fluid" />
+                            <img src="images\users-2\furkan_boztunc.jpg" alt="img15" class="img-fluid" />
                         </div>
                         <div class="card-body text-center">
-                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Erencan Yıldırım</h6></a>
-                            <p class="mb-0 text-muted small">Güvenlik Görevlisi</p>
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Furkan BOZTUNÇ</h6></a>
+                            <p class="mb-0 text-muted small">Muhasebe ve Finans Görevlisi</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 d-flex justify-content-center">
+                <div class="col-lg-4 d-flex justify-content-center">
                     <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
-                        data-name="Yusuf Mermer"
-                        data-img="images\users-2\eren_güvenlik.jpg"
-                        data-title="Güvenlik Görevlisi"
+                        data-name="Yasin ERBAŞ"
+                        data-img="images\users-2\yasin_erbas2.jpg"
+                        data-title="Muhasebe ve Finans Birimi Sorumlusu"
                         data-position="Güvenlik"
                         data-skills="Liderlik, Strateji, İletişim"
                         data-contact="yusuf@example.com"
@@ -909,21 +967,20 @@
                         data-social="linkedin=https://linkedin.com/in/yusuf,github=https://github.com/yusuf"
                         data-achievements="">
                         <div class="team-img">
-                            <img src="images\users-2\eren_güvenlik.jpg" alt="img16" class="img-fluid" />
+                            <img src="images\users-2\yasin_erbas2.jpg" alt="img16" class="img-fluid" />
                         </div>
                         <div class="card-body text-center">
-                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Yusuf Mermer</h6></a>
-                            <p class="mb-0 text-muted small">Güvenlik Görevlisi</p>
+                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Yasin ERBAŞ</h6></a>
+                            <p class="mb-0 text-muted small">Muhasebe ve Finans Birimi Sorumlusu</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- 5. 3'lü satır -->
             <div class="row">
-                <div class="col-lg-3 d-flex justify-content-center">
+                <div class="col-lg-4 d-flex justify-content-center">
                     <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
                         data-name="Hayati Çetinkaya"
-                        data-img="images\users-2\eren_güvenlik.jpg"
+                        data-img="images\users-2\hayati_cetinkayaorj.jpg"
                         data-title="Güvenlik Görevlisi"
                         data-position="Güvenlik"
                         data-skills="Liderlik, Strateji, İletişim"
@@ -933,7 +990,7 @@
                         data-social="linkedin=https://linkedin.com/in/hayati,github=https://github.com/hayati"
                         data-achievements="">
                         <div class="team-img">
-                            <img src="images\users-2\eren_güvenlik.jpg" alt="img17" class="img-fluid" />
+                            <img src="images\users-2\hayati_cetinkayaorj.jpg" alt="img17" class="img-fluid" />
                         </div>
                         <div class="card-body text-center">
                             <a href="#" class="team-name"><h6 class="mb-1 sub-title">Hayati Çetinkaya</h6></a>
@@ -941,115 +998,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 d-flex justify-content-center">
-                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
-                        data-name="Hilal Tuba Doğan"
-                        data-img="images\users-2\hilal_hanım.jpg"
-                        data-title="Destek Hizmetler Koordinatörü"
-                        data-position="Destek Hizmetler"
-                        data-skills="Liderlik, Strateji, İletişim"
-                        data-contact="hilal@example.com"
-                        data-contact-number="Dahili Numara (İç Hat): 119"
-                        data-education="Üniversite, Bölüm"
-                        data-social="linkedin=https://linkedin.com/in/hilal,github=https://github.com/hilal"
-                        data-achievements="">
-                        <div class="team-img">
-                            <img src="images\users-2\hilal_hanım.jpg" alt="img18" class="img-fluid" />
-                        </div>
-                        <div class="card-body text-center">
-                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Hilal Tuba Doğan</h6></a>
-                            <p class="mb-0 text-muted small">Destek Hizmetler Koordinatörü</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 d-flex justify-content-center">
-                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
-                        data-name="Gözde Aktaş"
-                        data-img="images\users-2\gözde_aktas.jpg"
-                        data-title="İş geliştirme Koordinatörü"
-                        data-position="İş geliştirme"
-                        data-skills="Liderlik, Strateji, İletişim"
-                        data-contact="gözde@example.com"
-                        data-contact-number="Dahili Numara (İç Hat): 120"
-                        data-education="Üniversite, Bölüm"
-                        data-social="linkedin=https://linkedin.com/in/gözde,github=https://github.com/gözde"
-                        data-achievements="">
-                        <div class="team-img">
-                            <img src="images\users-2\gözde_aktas.jpg" alt="img19" class="img-fluid position-relative" />
-                        </div>
-                        <div class="card-body text-center">
-                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Gözde Aktaş</h6></a>
-                            <p class="mb-0 text-muted small">İş geliştirme Koordinatörü</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 d-flex justify-content-center">
-                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
-                        data-name="Alim Akbay"
-                        data-img="images\users-2\alim_akbay.jpg"
-                        data-title="Teknik Hizmetler Görevlisi"
-                        data-position="Teknik Hizmetler"
-                        data-skills="Liderlik, Strateji, İletişim"
-                        data-contact="alim@example.com"
-                        data-contact-number="Dahili Numara (İç Hat): 121"
-                        data-education="Üniversite, Bölüm"
-                        data-social="linkedin=https://linkedin.com/in/alim,github=https://github.com/alim"
-                        data-achievements="">
-                        <div class="team-img">
-                            <img src="images\users-2\alim_akbay.jpg" alt="img20" class="img-fluid" />
-                        </div>
-                        <div class="card-body text-center">
-                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Alim Akbay</h6></a>
-                            <p class="mb-0 text-muted small">Teknik Hizmetler Görevlisi</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 6. 3'lü satır -->
-            <div class="row">
-                <div class="col-lg-3 d-flex justify-content-center">
-                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
-                        data-name="Yasin Karabulut"
-                        data-img="images\users-2\yasin_karabulut.jpg"
-                        data-title="Elektrik Teknisyeni"
-                        data-position="Teknik Hizmetler"
-                        data-skills="Liderlik, Strateji, İletişim"
-                        data-contact="yasin.karabulut@example.com"
-                        data-contact-number="Dahili Numara (İç Hat): 122"
-                        data-education="Üniversite, Bölüm"
-                        data-social="linkedin=https://linkedin.com/in/yasin.karabulut,github=https://github.com/yasin.karabulut"
-                        data-achievements="">
-                        <div class="team-img">
-                            <img src="images\users-2\yasin_karabulut.jpg" alt="img21" class="img-fluid" />
-                        </div>
-                        <div class="card-body text-center">
-                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">Yasin Karabulut</h6></a>
-                            <p class="mb-0 text-muted small">Elektrik Teknisyeni</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 d-flex justify-content-center">
-                    <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
-                        data-name="İbrahim Akpınar"
-                        data-img="images\users-2\ibrahım_akpınar.jpg"
-                        data-title="Bakım Teknikeri"
-                        data-position="Teknik Hizmetler"
-                        data-skills="Liderlik, Strateji, İletişim"
-                        data-contact="ibrahim@example.com"
-                        data-contact-number="Dahili Numara (İç Hat): 123"
-                        data-education="Üniversite, Bölüm"
-                        data-social="linkedin=https://linkedin.com/in/ibrahim,github=https://github.com/ibrahim"
-                        data-achievements="">
-                        <div class="team-img">
-                            <img src="images\users-2\ibrahım_akpınar.jpg" alt="img22" class="img-fluid" />
-                        </div>
-                        <div class="card-body text-center">
-                            <a href="#" class="team-name"><h6 class="mb-1 sub-title">İbrahim Akpınar</h6></a>
-                            <p class="mb-0 text-muted small">Bakım Teknikeri</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 d-flex justify-content-center">
+                <div class="col-lg-4 d-flex justify-content-center">
                     <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
                         data-name="Erencan Yıldırım"
                         data-img="images\users-2\eren_güvenlik.jpg"
@@ -1070,7 +1019,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 d-flex justify-content-center">
+                <div class="col-lg-4 d-flex justify-content-center">
                     <div class="team-box card border-0 mt-4 bg-transparent custom-width team-animate-border"
                         data-name="Yusuf Mermer"
                         data-img="images\users-2\eren_güvenlik.jpg"
@@ -1083,7 +1032,7 @@
                         data-social="linkedin=https://linkedin.com/in/yusuf,github=https://github.com/yusuf"
                         data-achievements="">
                         <div class="team-img">
-                            <img src="images\users-2\eren_güvenlik.jpg" alt="img24" class="img-fluid" />
+                            <img src="images\users-2\yusuf_mermer3.jpg" alt="img24" class="img-fluid" />
                         </div>
                         <div class="card-body text-center">
                             <a href="#" class="team-name"><h6 class="mb-1 sub-title">Yusuf Mermer</h6></a>
@@ -1095,7 +1044,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center mt-4">
-                        <a href="#" class="btn team-btn rounded-pill">Join Our Team</a>
+                        <a href="#" class="btn team-btn rounded-pill">----</a>
                     </div>
                 </div><!--end col-->
             </div><!--end row-->
